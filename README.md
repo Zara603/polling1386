@@ -1,4 +1,4 @@
-# Store Locator with Google Maps API and React.js
+# Locator using Google Maps API, React
 
 #### Developers
 ```
