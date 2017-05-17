@@ -7,13 +7,24 @@ window.jQuery = jQuery
 require('semantic-ui-css/semantic')
 import List from './List'
 import InfoWindow from './InfoWindow'
-import MyBranch from './MyBranch'
 import branches from '../data/branches'
 
 class Main extends React.Component {
   render() {
     return (
       <div className="root">
+        <div className="hero">
+          <img src="public/images/iran-hope.png"/>
+          <div className="title-persian">
+            <p >
+              To find the nearest polling station enter your address into the box below.
+            </p>
+            <p className="warning">
+              * You will need your passport in order to vote.
+            </p>
+          </div>
+
+        </div>
         <div className="ui top attached menu">
           <div className="item">
             <a href="/">
@@ -26,9 +37,6 @@ class Main extends React.Component {
               <i className="search link icon"></i>
             </div>
             <div className="results"></div>
-          </div>
-          <div className="right menu">
-            <MyBranch {...this.props} branch={this.props.myBranch} map={this.map}/>
           </div>
         </div>
         <div className="ui bottom attached segment">
@@ -73,7 +81,7 @@ class Main extends React.Component {
   }
 
   setMapStyle() {
-    return [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#e81e07"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"color":"#f9f9f9"},{"weight":6}]},{"featureType":"landscape","elementType":"all","stylers":[{"lightness":20},{"color":"#f9f9f9"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#f2ede5"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"hue":"#11ff00"}]},{"featureType":"poi","elementType":"labels.text.stroke","stylers":[{"lightness":100}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"hue":"#4cff00"},{"saturation":58}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"lightness":-100}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"lightness":100}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#f2ede5"},{"lightness":-25}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#f2ede5"},{"lightness":-40}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#f2ede5"},{"lightness":-10}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#f2ede5"},{"lightness":-20}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#0a305b"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"lightness":-100}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"lightness":100}]}]
+    return [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#691969"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"color":"##685a7a"},{"weight":6}]},{"featureType":"landscape","elementType":"all","stylers":[{"lightness":20},{"color":"#f9f9f9"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#f2ede5"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"hue":"#11ff00"}]},{"featureType":"poi","elementType":"labels.text.stroke","stylers":[{"lightness":100}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"hue":"#4cff00"},{"saturation":58}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"lightness":-100}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"lightness":100}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#f2ede5"},{"lightness":-25}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#f2ede5"},{"lightness":-40}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#f2ede5"},{"lightness":-10}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#f2ede5"},{"lightness":-20}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#A8CFF3"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"lightness":-100}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"lightness":100}]}]
   }
 
   loadData() {
