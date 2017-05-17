@@ -96,17 +96,10 @@ class Main extends React.Component {
             url: 'public/images/pas.png'
           }
         });
-
-        const infoWindow = new google.maps.InfoWindow({
-          content: feature.properties.branch,
-          position: pos,
-          pixelOffset: new google.maps.Size(0, -25)
-        });
         marker.addListener('click', () => {
-          infoWindow.open(this.map)
+			this.showInfo(feature)
         });
       });
-      //this.addPopup()
   }
 
   updateListFromExtent() {
@@ -182,19 +175,15 @@ class Main extends React.Component {
     } , 2000)
   }
 
-  addPopup() {
-
-    this.infoWindow = new google.maps.InfoWindow()
-    this.map.data.addListener('click', (event) => {
-      console.log('jon jon', event)
-      const {feature} = event
-      const point = feature.getGeometry().get()
-      const content = document.createElement('div')
-      ReactDOM.render(<InfoWindow feature={feature} {...this.props} />, content)
-      this.infoWindow.setContent(content)
-      this.infoWindow.setPosition(point)
-      this.infoWindow.open(this.map)
-    })
+  showInfo(feature) {
+      this.infoWindow = new google.maps.InfoWindow()
+	  const coords = feature.geometry.coordinates
+	  const point = new google.maps.LatLng(coords[0], coords[1])
+	  const content = document.createElement('div')
+	  ReactDOM.render(<InfoWindow feature={feature} {...this.props} />, content)
+	  this.infoWindow.setContent(content)
+	  this.infoWindow.setPosition(point)
+	  this.infoWindow.open(this.map)
   }
 
   componentDidUpdate() {
