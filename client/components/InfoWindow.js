@@ -20,29 +20,8 @@ class InfoWindow extends React.Component {
             <span>{feature.properties.office_phone}</span>
           </div>
           <br />
-          <div className={feature.properties.br_group === 'PAS' ? 'transition hidden' : '' }>
-            <div className="description">
-              <strong>Monday:</strong> {feature.properties.monday_open} AM - {feature.properties.monday_close} PM
-            </div>
-            <div className="description">
-              <strong>Tuesday:</strong> {feature.properties.tuesday_open} AM - {feature.properties.tuesday_close} PM
-            </div>
-            <div className="description">
-              <strong>Wednesday:</strong> {feature.properties.wednesday_open} AM - {feature.properties.wednesday_close} PM
-            </div>
-            <div className="description">
-              <strong>Thursday:</strong> {feature.properties.thursday_open} AM - {feature.properties.thursday_close} PM
-            </div>
-            <div className="description">
-              <strong>Friday:</strong> {feature.properties.friday_open} AM - {feature.properties.friday_close} PM
-            </div>
-          </div>
-
         </div>
         <div className="content">
-          <a href={'#/' + feature.properties.branch} className="ui button">
-            <i className="external icon"></i>Details
-          </a>
           <button className="ui button" onClick={() => this.getDirections(feature.properties.cartodb_id)}>
             <i className="red map pin icon"></i>Directions
           </button>

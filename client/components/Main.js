@@ -33,7 +33,7 @@ class Main extends React.Component {
           </div>
           <div className="search item">
             <div className="ui big transparent left icon input">
-              <input ref="search" type="text" placeholder="Where can I vote" onKeyUp={(e) => this.search(e)}/>
+              <input ref="search" type="text" placeholder="Where can I vote" />
               <i className="search link icon"></i>
             </div>
             <div className="results"></div>
@@ -76,9 +76,15 @@ class Main extends React.Component {
         ReactDOM.findDOMNode(this.refs.search),
         {bounds: this.bounds}
       )
+
+      gmaps.event.addListener(search, 'place_changed', () => {
+          var place = search.getPlace();
+          this.searchForPlace(place.formatted_address || place.name);
+      });
       gmaps.event.addListener(this.map, 'bounds_changed', () => this.updateListFromExtent())
     })
   }
+
 
   setMapStyle() {
     return [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#691969"}]},{"featureType":"administrative","elementType":"labels.text.stroke","stylers":[{"color":"##685a7a"},{"weight":6}]},{"featureType":"landscape","elementType":"all","stylers":[{"lightness":20},{"color":"#f9f9f9"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#f2ede5"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"hue":"#11ff00"}]},{"featureType":"poi","elementType":"labels.text.stroke","stylers":[{"lightness":100}]},{"featureType":"poi","elementType":"labels.icon","stylers":[{"hue":"#4cff00"},{"saturation":58}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"lightness":-100}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"lightness":100}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#f2ede5"},{"lightness":-25}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#f2ede5"},{"lightness":-40}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#f2ede5"},{"lightness":-10}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#f2ede5"},{"lightness":-20}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#A8CFF3"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"lightness":-100}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"lightness":100}]}]
@@ -97,7 +103,7 @@ class Main extends React.Component {
           }
         });
         marker.addListener('click', () => {
-			this.showInfo(feature)
+          this.showInfo(feature)
         });
       });
   }
@@ -111,14 +117,17 @@ class Main extends React.Component {
     this.props.updateListFromExtent(branchList)
   }
 
-  search(e) {
+  searchKeyStroke(e) {
     if (e.key === 'Enter') {
+      this.searchForPlace(e.target.value);
+    }
+  }
+  searchForPlace(place) {
       const geocoder = new google.maps.Geocoder()
       geocoder.geocode({
-        address: e.target.value,
+        address: place,
         bounds: this.bounds
-      }, (results, status) => this.listNearBy(results, status))
-    }
+      }, (results, status) => this.listNearBy(results, status));
   }
 
   listNearBy(results, status) {
@@ -131,7 +140,6 @@ class Main extends React.Component {
         const coords = feature.geometry.coordinates
         const destination = new google.maps.LatLng(coords[0], coords[1])
         const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination)
-        console.log(originLat, originLong, feature.properties.branch, coords[0], coords[1], distance)
         return {
           distance: distance,
           index: i
@@ -140,7 +148,6 @@ class Main extends React.Component {
       const sortedDistanceIndex = distanceIndex.sort((a, b) => {
         return a.distance - b.distance
       })
-      console.log(sortedDistanceIndex)
       const bounds = new google.maps.LatLngBounds()
       sortedDistanceIndex.slice(0, 2)
         .forEach(x => {
