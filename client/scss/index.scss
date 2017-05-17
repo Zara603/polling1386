@@ -9,8 +9,11 @@ h1 {
 }
 .hero {
   position: relative;
+  text-align: right;
+  background-color: #118885
   img {
-    width: 100%;
+    width: 20%;
+    max-width: 200px;
   }
   .title-persian {
     position: absolute;
