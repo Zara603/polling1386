@@ -54,15 +54,15 @@ class Main extends React.Component {
       libraries: ['places', 'geometry']
     }).then(gmaps => {
       this.map = new gmaps.Map(ReactDOM.findDOMNode(this.refs.map), {
-        center: new gmaps.LatLng(39.203119, -84.512016),
-        zoom: 13,
+        center: new gmaps.LatLng(-34.397, 150.644),
+        zoom: 4,
         styles: this.setMapStyle()
       })
       this.locateMe()
       this.loadData()
       this.bounds = new gmaps.LatLngBounds(
-        new gmaps.LatLng(39.002693, -84.799927),
-        new gmaps.LatLng(39.430408, -84.102295)
+        new gmaps.LatLng(-34.397, 150.644),
+        new gmaps.LatLng(-34.397, 150.644)
       )
       const search = new gmaps.places.Autocomplete(
         ReactDOM.findDOMNode(this.refs.search),
@@ -77,40 +77,35 @@ class Main extends React.Component {
   }
 
   loadData() {
-    this.map.data.addGeoJson(this.props.branches, {idPropertyName: 'cartodb_id'})
-    this.map.data.setStyle(feature => {
-      switch (feature.getProperty('br_group')) {
-        case 'MTB':
-          return {
-            icon: {
-              url: 'public/images/mtb.png',
-              anchor: new google.maps.Point(16, 16)
-            },
+      branches.features.map((feature, i) => {
+        const coords = feature.geometry.coordinates
+        const pos = new google.maps.LatLng(coords[0], coords[1])
+        const marker = new google.maps.Marker({
+          animation: 'DROP',
+          position: pos,
+          map: this.map,
+          icon: {
+            url: 'public/images/pas.png'
           }
-        case 'INS':
-            return{
-              icon: {
-                url: 'public/images/ins.png',
-                anchor: new google.maps.Point(16, 0)
-              }
-            }
-        case 'PAS':
-          return{
-            icon: {
-              url: 'public/images/pas.png',
-              anchor: new google.maps.Point(16, 0)
-            }
-          }
-      }
-    })
-    this.addPopup()
+        });
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: feature.properties.branch,
+          position: pos,
+          pixelOffset: new google.maps.Size(0, -25)
+        });
+        marker.addListener('click', () => {
+          infoWindow.open(this.map)
+        });
+      });
+      //this.addPopup()
   }
 
   updateListFromExtent() {
     const extent = this.map.getBounds()
     const branchList = branches.features.filter(feature => {
       const coords = feature.geometry.coordinates
-      return extent.contains(new google.maps.LatLng(coords[1], coords[0]))
+      return extent.contains(new google.maps.LatLng(coords[0], coords[1]))
     })
     this.props.updateListFromExtent(branchList)
   }
@@ -127,11 +122,15 @@ class Main extends React.Component {
 
   listNearBy(results, status) {
     if (status === 'OK') {
-      const origin = results[0].geometry.location
+      const originLat = results[0].geometry.location.lat();
+      const originLong = results[0].geometry.location.lng();
+
+      const origin = new google.maps.LatLng(originLat, originLong);
       const distanceIndex = branches.features.map((feature, i) => {
         const coords = feature.geometry.coordinates
-        const destination = new google.maps.LatLng(coords[1], coords[0])
+        const destination = new google.maps.LatLng(coords[0], coords[1])
         const distance = google.maps.geometry.spherical.computeDistanceBetween(origin, destination)
+        console.log(originLat, originLong, feature.properties.branch, coords[0], coords[1], distance)
         return {
           distance: distance,
           index: i
@@ -140,11 +139,12 @@ class Main extends React.Component {
       const sortedDistanceIndex = distanceIndex.sort((a, b) => {
         return a.distance - b.distance
       })
+      console.log(sortedDistanceIndex)
       const bounds = new google.maps.LatLngBounds()
       sortedDistanceIndex.slice(0, 2)
         .forEach(x => {
           let coords = branches.features[x.index].geometry.coordinates
-          bounds.extend(new google.maps.LatLng(coords[1], coords[0]))
+          bounds.extend(new google.maps.LatLng(coords[0], coords[1]))
         })
       this.map.fitBounds(bounds)
     }
@@ -152,7 +152,7 @@ class Main extends React.Component {
 
   locateMe() {
     setTimeout(() => {
-      const pos = new google.maps.LatLng(39.233119, -84.592016)
+      const pos = new google.maps.LatLng(-34.397, 150.644)
       this.map.setCenter(pos)
       const locationInfoWindow = new google.maps.InfoWindow({
         content: 'You are here.',
@@ -175,8 +175,10 @@ class Main extends React.Component {
   }
 
   addPopup() {
+
     this.infoWindow = new google.maps.InfoWindow()
     this.map.data.addListener('click', (event) => {
+      console.log('jon jon', event)
       const {feature} = event
       const point = feature.getGeometry().get()
       const content = document.createElement('div')

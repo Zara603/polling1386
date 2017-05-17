@@ -24,7 +24,7 @@ class MyBranch extends React.Component {
     const {map} = this.props
     if (!geometry) return
     const coords = geometry.coordinates
-    const point = new google.maps.LatLng(coords[1], coords[0])
+    const point = new google.maps.LatLng(coords[0], coords[1])
     map.panTo(point)
     map.setZoom(16)
   }

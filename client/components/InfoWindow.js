@@ -17,7 +17,7 @@ class InfoWindow extends React.Component {
           </div>
           <div className={feature.getProperty('br_group') === 'PAS' ? 'description transition hidden' : 'description' }>
             <i className="call icon"></i>
-            <span>{feature.getProperty('br_manager_phone')}</span>
+            <span>{feature.getProperty('office_phone')}</span>
           </div>
           <br />
           <div className={feature.getProperty('br_group') === 'PAS' ? 'transition hidden' : '' }>

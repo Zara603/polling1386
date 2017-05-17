@@ -13,7 +13,7 @@ class ListItem extends React.Component {
           <a className="heading" href={'#/' + attrs.branch}>{attrs.branch}</a>
           <div className="description">
             <i className="call icon"></i>
-            <span>{attrs.br_manager_phone || 'N/A'}</span>
+            <span>{attrs.office_phone || 'N/A'}</span>
           </div>
           <div className="description">
             <i className="flag icon"></i>

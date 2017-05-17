@@ -1,43 +1,80 @@
 const branches = {"type":"FeatureCollection",
-   "features":[  
-      {  
+   "features":[
+      {
          "type":"Feature",
-         "geometry":{  
+         "geometry":{
             "type":"Point",
-            "coordinates":[  
-               -84.46933,
-               39.25445
+            "coordinates":[
+              46.947852, 7.451860
             ]
          },
-         "properties":{  
-            "cartodb_id":19,
-            "zip":45215,
-            "br_manager_phone":"(513) 782-4134",
-            "state":"OH",
-            "city":"Cincinnati",
-            "street_address":"10230 Springfield Pike",
-            "branch": "Roohani"
+         "properties":{
+            "cartodb_id":1,
+            "zip":3006,
+            "office_phone":"(+41) 31 350 10 89",
+            "state":"Bern",
+            "city":" Bern",
+            "street_address":"Thunstrasse 68",
+            "branch": "Iranian Embassy in Bern, Switzerland"
          }
       },
-      {  
+      {
          "type":"Feature",
-         "geometry":{  
+         "geometry":{
             "type":"Point",
-            "coordinates":[  
-               -84.33962,
-               39.26043
+            "coordinates":[
+               25.3,
+               51.5
             ]
          },
-         "properties":{  
-            "cartodb_id":7,
-            "zip":45242,
-            "br_manager_phone":"(513) 387-2109",
-            "state":"OH",
-            "city":"Cincinnati",
-            "street_address":"10851 Montgomery Rd",
-            "branch":"Montgomery"
+         "properties":{
+            "cartodb_id":2,
+            "zip":"",
+            "office_phone":"(+974) 4483 5300",
+            "state":"",
+            "city":"Doha",
+            "street_address":"Diplomatic Area, West Bay",
+            "branch":"Iranian Embassy in Doha, Qatar"
+         }
+      },
+      {
+         "type":"Feature",
+         "geometry":{
+            "type":"Point",
+            "coordinates":[
+               -33.8,
+               151.0
+            ]
+         },
+         "properties":{
+            "cartodb_id":8,
+            "zip":"2150",
+            "office_phone":"",
+            "state":"NSW",
+            "city":"Sydney",
+            "street_address":"42 Campbell Street",
+            "branch":"Parra Villa Function Lounge"
+         }
+      },
+      {
+         "type":"Feature",
+         "geometry":{
+            "type":"Point",
+            "coordinates":[
+              39.7, -86.1
+            ]
+         },
+         "properties":{
+            "cartodb_id":18,
+            "zip":"2150",
+            "office_phone":"",
+            "state":"NSW",
+            "city":"Sydney",
+            "street_address":"42 Campbell Street",
+            "branch":"New York"
          }
       }
-   ] 
-}     
+
+   ]
+}
 export default branches
