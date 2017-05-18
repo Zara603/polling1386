@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
 h1 {
-  background-color: antiquewhite;
+  background-color: #9a2e6f;
 }
+
+p, span, .input {
+  font-family: 'Raleway';
+}
+
 #root, .root {
   margin: 0;
   padding: 0;
@@ -16,24 +23,31 @@ h1 {
     max-width: 200px;
   }
 
-  .title-persian {
-    position: absolute;
-    text-align: left;
-    font-size: 2vw;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    bottom: 10px;
+  .title {
+    font-family: 'Raleway';
     color: white;
-    width: 60%;
-    padding: 0 20px;
+    padding: 0px 16px;
+    font-size: 40px;
   }
 }
 
 .social-info {
-  font-size: 24px;
-  padding: 16px;
+  font-size: 18px;
+  padding: 0 16px 10px;
   a {
-    color: purple;
+    color: #f8faf6;
+
+    &:hover {
+      color: #9a2e6f;
+    }
   }
+
+}
+
+.header-info {
+  position: absolute;
+  text-align: left;
+  bottom: 0;
 }
 
 .credit {
@@ -41,7 +55,7 @@ h1 {
   font-style: italic;
   padding-left: 16px;
   padding-bottom: 16px;
-  color: #118885;
+  color: #f8faf6;
 }
 
 .map-canvas {
@@ -65,10 +79,10 @@ h1 {
 }
 
 .ui[class*="left icon"].input > i.icon {
-  color: #482190;
+  color: #9a2e6f;
 }
 .search.item {
-  width: 56%;
+  width: 100%;
   min-width: calc(320px - 66px);
 }
 
@@ -124,6 +138,15 @@ i.red.icon {
   color: #3c3c3c;
 }
 
+.information {
+  font-size: 18px;
+  padding: 16px;
+}
+
+.ui.celled.list > .item, .ui.celled.list > .list {
+  border-top: 1px solid rgba(114, 10, 136, 0.24) !important;
+}
+
 @media only screen and (max-width: 767px)  {
   .ui.stackable.grid {
     .row {
@@ -149,5 +172,50 @@ i.red.icon {
 
   .content.operations {
     margin-top: 10px;
+  }
+}
+
+.ui.big.list {
+  padding-left: 16px !important;
+}
+
+.information, .description {
+  padding: 16px !important;
+}
+
+@media (max-width: 600px) {
+  .information, .description {
+    font-size: 12px !important;
+  }
+
+  .hero .title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .credit {
+    font-size: 8px;
+    padding-bottom: 6px;
+  }
+
+  .social-info {
+    padding-bottom: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .title {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .credit {
+    font-size: 8px;
+    padding-bottom: 6px;
+  }
+
+  .social-info {
+    padding-bottom: 5px;
+    font-size: 16px;
   }
 }

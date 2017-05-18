@@ -14,24 +14,34 @@ class Main extends React.Component {
     return (
       <div className="root">
         <div className="hero">
-          <img src="public/images/iran-hope.png"/>
-          <div className="title-persian">
-            <p >
-              To find the nearest polling station, enter your address into the box below.
-            </p>
-            <p className="warning">
-              * You will need either your passport, ID or birth certificate in order to vote.
-            </p>
+          <img src="public/images/i_vote.png"/>
+          <div className="header-info">
+            <h1 className="title">Iran Hope</h1>
+            <div className="social-info">
+              <span><a href="https://www.facebook.com/events/1824977051156851/"><i className="facebook icon"></i></a></span>
+              <span><a href="https://t.me/iran_hope"><i className="telegram icon"></i></a></span>
+              <span><a href="https://twitter.com/IRAN_HOPE_96"><i className="twitter icon"></i></a></span>
+              <span><a href="mailto:IRAN.HOPE.96@GMAIL.COM"><i className="mail icon"></i></a></span>
+            </div>
+          <div className="credit">
+            <p>Author: Zahra D, Contributers: Mohammad, Taha, Saeed & Jon</p>
           </div>
         </div>
-        <div className="social-info">
-         <span><a href="https://www.facebook.com/events/1824977051156851/"><i className="facebook icon"></i></a></span>
-         <span><a href="https://t.me/iran_hope"><i className="telegram icon"></i></a></span>
-         <span><a href="https://twitter.com/IRAN_HOPE_96"><i className="twitter icon"></i></a></span>
-         <span><a href="mailto:IRAN.HOPE.96@GMAIL.COM"><i className="mail icon"></i></a></span>
         </div>
-        <div className="credit">
-          <p>Author: Zahra D, Contributers: Mohammad, Taha, Saeed & Jon</p>
+        <div className="header-info">
+          <div className="social-info">
+            <span><a href="https://www.facebook.com/events/1824977051156851/"><i className="facebook icon"></i></a></span>
+            <span><a href="https://t.me/iran_hope"><i className="telegram icon"></i></a></span>
+            <span><a href="https://twitter.com/IRAN_HOPE_96"><i className="twitter icon"></i></a></span>
+            <span><a href="mailto:IRAN.HOPE.96@GMAIL.COM"><i className="mail icon"></i></a></span>
+          </div>
+          <div className="credit">
+            <p>Author: Zahra D, Contributers: Mohammad, Taha, Saeed & Jon</p>
+          </div>
+        </div>
+        <div className="information">
+          <p>To find the nearest polling station, enter your address into the box below.</p>
+          <p>* You will need either your passport, ID or birth certificate in order to vote.</p>
         </div>
         <div className="ui top attached menu">
           <div className="item">
