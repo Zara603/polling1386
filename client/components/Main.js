@@ -17,13 +17,21 @@ class Main extends React.Component {
           <img src="public/images/iran-hope.png"/>
           <div className="title-persian">
             <p >
-              To find the nearest polling station enter your address into the box below.
+              To find the nearest polling station, enter your address into the box below.
             </p>
             <p className="warning">
-              * You will need your passport in order to vote.
+              * You will need either your passport, ID or birth certificate in order to vote.
             </p>
           </div>
-
+        </div>
+        <div className="social-info">
+         <span><a href="https://www.facebook.com/events/1824977051156851/"><i className="facebook icon"></i></a></span>
+         <span><a href="https://t.me/iran_hope"><i className="telegram icon"></i></a></span>
+         <span><a href="https://twitter.com/IRAN_HOPE_96"><i className="twitter icon"></i></a></span>
+         <span><a href="mailto:IRAN.HOPE.96@GMAIL.COM"><i className="mail icon"></i></a></span>
+        </div>
+        <div className="credit">
+          <p>Author: Zahra D, Contributers: Mohammad, Taha, Saeed & Jon</p>
         </div>
         <div className="ui top attached menu">
           <div className="item">
@@ -57,7 +65,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     loadGoogleMapsAPI({
-      key: 'AIzaSyA7U_W-DipuiGaONpCHJiCxTF9-plPU4o4',
+      key: 'AIzaSyDX_h_hKHV2-GcAP1GPtqS4P0XscCsKszg',
       v: '3',
       libraries: ['places', 'geometry']
     }).then(gmaps => {
@@ -66,7 +74,7 @@ class Main extends React.Component {
         zoom: 4,
         styles: this.setMapStyle()
       })
-      this.locateMe()
+      // this.locateMe()
       this.loadData()
       this.bounds = new gmaps.LatLngBounds(
         new gmaps.LatLng(-34.397, 150.644),
