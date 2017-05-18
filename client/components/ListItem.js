@@ -34,16 +34,20 @@ class ListItem extends React.Component {
   }
   mouseOver() {
     const { properties } = this.branch
-    const feature = this.map.data.getFeatureById(properties.cartodb_id)
-    this.map.data.overrideStyle(feature, {
-      icon: {
-        url: 'public/images/blue-pin.png'
-      },
-      zIndex: 1000
-    })
+    if (this.map) {
+        const feature = this.map.data.getFeatureById(properties.cartodb_id)
+        this.map.data.overrideStyle(feature, {
+          icon: {
+            url: 'public/images/blue-pin.png'
+          },
+          zIndex: 1000
+        })
+    }
   }
   mouseOut() {
-    this.map.data.revertStyle()
+    if (this.map) {
+      this.map.data.revertStyle()
+    }
   }
 
   showDirectionsPanel(branch) {
